@@ -1,0 +1,48 @@
+
+{% extends "adminhead.html" %}
+
+{% block content %}
+
+<!-- ======= Contact Section ======= -->
+<section id="contact" class="contact">
+    <div class="container">
+
+      <div class="section-title">
+        <span></span>
+        <h2>Add Category</h2>
+       
+      </div>
+
+      
+
+      <div class="row" data-aos="fade-up">
+
+       
+        <div class="col-lg-6">
+    
+            <form class="" style="box-shadow: 0 0 30px rgb(214 215 216 / 60%);
+            padding: 30px;" enctype="multipart/form-data" method="post" action="{% url 'add_category_process' %}">
+              {% csrf_token %}
+            <div class="form-row">
+              <div class="form-group">
+                <input type="text" name="t1" class="form-control" id="name" placeholder="Category Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" required />
+                <div class="validate"></div>
+              </div>
+              
+            </div>
+           
+            <div class="form-group">
+              <textarea class="form-control" name="t2" rows="5" data-rule="required"  placeholder="Category Details" required></textarea>
+              <div class="validate"></div>
+            </div>
+
+           
+            <div class="text-center"><button class="btn btn-success" type="submit">Submit</button></div>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- End Contact Section -->
+  {% endblock %}

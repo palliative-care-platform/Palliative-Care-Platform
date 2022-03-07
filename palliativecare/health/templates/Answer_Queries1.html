@@ -1,0 +1,106 @@
+{% extends "adminhead.html" %}
+{% load static %}
+{% block content %}
+
+<!---
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
+<div class="row  p-3">	
+    <!-- tables -->
+    
+     <!-- <div class="agile-tables">-->
+     <div class="col-md-12 bg-info">
+          <h2 class="text-primary">Manage User Feedback</h2>
+
+
+<table class="table table-responsive table-striped"
+ width="100%" style="margin-bottom:10px;">
+    <thead class="bg-primary text-white" style="background-color: black;">
+    <tr>
+        <th style="  color:white;">Sl.No.</th>
+        <th style="  color:white;">User Name</th>
+        <th style="  color:white;">Subject</th>
+        <th style="  color:white;">Message</th>
+        <th style="  color:white;">Complaint Date</th>
+        <th style="  color:white;">Reply</th>
+        
+    </tr>
+</thead>
+    {% for datas in data %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{datas.user.User_name}}</td>
+        <td>{{datas.Feedback_subject}}</td>
+        <td>{{datas.Feedback_message}}</td>
+        <td>{{datas.Feedback_date}}</td>
+        <td>      {% if datas.Feedback_reply != "not yet Seen"%}
+            {{datas.Feedback_reply}}
+            {% endif %}
+            {% if datas.Feedback_reply == "not yet Seen"%}
+            <a href="#" data-toggle='modal' data-target='#edit-{{datas.Feedback_id}}'class="btn btn-info" >Reply</a>
+            {% endif %}</td>
+    
+        
+    </tr>
+    {% if datas.Feedback_reply == "not yet Seen"%}
+           <!-- Modal parent details -->
+<div id="edit-{{datas.Feedback_id}}" class="modal fade" role="dialog" >
+    <div class="modal-dialog">
+    
+    <!-- Modal content-->
+    <div class="modal-content">
+    <form role="form" action="{% url 'Feedback' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="t1" readonly value="{{datas.Feedback_id}}"/>
+                        <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h4 class="modal-title">Reply Details</h4>
+    </div>
+   
+    <div class="modal-body">
+    <div class="form-group">
+    <label for="email">Subject:</label>
+    <input type="text" class="form-control" name="s1" value="{{datas.Feedback_subject}}" readonly />
+    </div>
+    
+    <div class="form-group">
+    <label for="email">message</label>
+    <textarea class="form-control" name="s2"   readonly>{{datas.Feedback_message}}</textarea>
+
+    </div>
+    
+    <div class="form-group">
+    <label for="email">Reply</label>
+    <textarea class="form-control" name="t2" required ></textarea>
+
+    <input type="submit" class="btn btn-success" style="margin-left:0px ! important" value="Submit"/>
+    </div>
+    
+    </div>
+    <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+   
+    </div>
+    </div>
+    </form>
+    </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+            </table>
+
+
+        </div>
+        <!---    </div>-->
+           
+               </div>
+               <style>
+                   table th, table td {
+                   padding: 9px 7px;
+                   text-align: left;
+                   }
+   
+                   </style>
+
+{% endblock %}

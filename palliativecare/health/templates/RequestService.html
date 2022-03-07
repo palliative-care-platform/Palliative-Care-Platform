@@ -1,0 +1,116 @@
+{% extends "userhead.html" %}
+{% load static %}
+{% block content %}
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<div class="row  p-3">	
+    <!-- tables -->
+    
+     <!-- <div class="agile-tables">-->
+     <div class="col-md-12 bg-info">
+          <h2 class="text-primary">View Providers and Request Services</h2>
+            <table id="table table-responsive table-striped " width="100%" style="margin-bottom:10px;">
+          <thead class="bg-primary " style="background-color: aqua;">
+       <tr >
+                            <th >Sl.No.</th>
+                            <th  >Name</th>
+                            <th  >Address</th>
+                            <th  >Email</th>
+                            <th  >Phoneno</th>
+                            <th  >District</th>
+                            <th  >Location</th>
+                            <th>Category</th>
+                            <th  >Tharif</th>
+                        
+                            <th  >Action</th>
+                          </tr>
+                          </thead>
+        
+        <tbody  style="background-color: aqua;">
+           
+            {% for datas in data %}
+           
+                                <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{datas.Provide_name}}</td>
+                                <td>{{datas.Provide_address}}</td>
+                                <td>{{datas.Provide_email}}</td>
+                                <td>{{datas.Provide_phone}}</td>
+                               
+                            <td>{{datas.Provide_district}}</td>
+                            <td>{{datas.Provide_location}}</td>
+                                <td>{{datas.catgerory.catgerory_name}}</td>	
+                                <td>{{datas.Provide_tharif}}</td>
+                                <td><a href="#" data-toggle='modal' data-target='#edit-{{datas.Provide_id}}'class="btn btn-info" >Request Service</a>
+                                </td>
+
+
+                                <div id="edit-{{datas.Provide_id}}" class="modal fade" role="dialog" >
+                                    <div class="modal-dialog">
+                                    
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                    <form role="form" action="{% url 'AddRequest' %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="t1" readonly value="{{datas.Provide_logid.logid}}"/>
+                                        <input type="hidden" name="t2" readonly value="{{datas.catgerory.catgerory_id}}"/>                 
+                                        
+                                        <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Service Request</h4>
+                                    </div>
+                                   
+                                    <div class="modal-body">
+                                    <div class="form-group">
+                                    <label for="email">Category:</label>
+                                    <input type="text" class="form-control" name="s1" value="{{datas.catgerory.catgerory_name}}" readonly />
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                    <label for="email">Service Type</label>
+                                    <textarea class="form-control" name="s2"  required></textarea>
+                                
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                    <label for="email">Service Details</label>
+                                    <textarea class="form-control" name="s3" required ></textarea>
+                                
+                                    <input type="submit" class="btn btn-success" style="margin-left:0px ! important" value="Submit"/>
+                                    </div>
+                                    
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                   
+                                    </div>
+                                    </div>
+                                    </form>
+                                    </div>
+                                    </div>
+
+
+
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+      </div>
+     <!---    </div>-->
+        
+            </div>
+            <style>
+                table th, table td {
+                padding: 9px 7px;
+                text-align: left;
+                }
+                table th
+                {
+                    color:white;
+                }
+                </style>
+
+
+{% endblock %}

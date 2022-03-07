@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Palliative Care</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'img/favicon.png' %}" rel="icon">
+  <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/boxicons/css/boxicons.min.css ' %}" rel="stylesheet">
+  <link href="{% static 'vendor/venobox/venobox.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/aos/aos.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+
+  <!--Login css-->
+
+  <link href="{% static 'css/login.css' %}" rel="stylesheet"> 
+  <script src="{% static 'js/login.js'%}"></script>
+
+  <!--Login ends-->
+
+  <!-- =======================================================
+  * Template Name: Day - v2.2.1
+  * Template URL: https://bootstrapmade.com/day-multipurpose-html-template-for-free/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Top Bar ======= -->
+  <div id="topbar" class="d-none d-lg-flex align-items-center fixed-top ">
+    <div class="container d-flex">
+      <div class="contact-info mr-auto">
+        <i class="icofont-envelope"></i> <a href="mailto:myarogyakgov@gmail.com">palliativecare@gmail.com</a>
+        <i class="icofont-phone">0471 2222115</i>
+      </div>
+      <div class="social-links">
+        <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
+        <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
+        <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
+        <a href="#" class="skype"><i class="icofont-skype"></i></a>
+        <a href="#" class="linkedin"><i class="icofont-linkedin"></i></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo mr-auto"><a href="#">Palliative Care</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo mr-auto"><img src="{% static 'img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="{%  url 'index' %}">Home</a></li>
+        <li ><a href="{% url 'User_Reg' %}" >User Register</a></li>
+          <li ><a href="{% url 'Provider_Reg' %}" >Provider Register</a></li>
+        
+        </ul>
+      </nav><!-- .nav-menu -->
+
+    </div>
+  </header><!-- End Header -->
+
+
+{% block content %}
+
+  {% endblock %}
+
+
+
+
+  <main id="main">
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center" style="height:200px ! important">
+    <div class="container position-relative" data-aos="fade-up" data-aos-delay="500">
+     
+    </div>
+  </section><!-- End Hero -->
+
+
+       <!-- login /signup area -->
+
+
+    <!-- l/s end -->
+
+ <!-- ======= Contact Section ======= -->
+ <section id="contact" class="contact">
+    <div class="container">
+
+      <div class="section-title">
+        <span>Provider Registration</span>
+        <h2>Provider Registration</h2>
+       
+      </div>
+
+      
+
+      <div class="row" data-aos="fade-up">
+
+       
+        <div class="col-lg-12">
+    
+            <form class="" style="box-shadow: 0 0 30px rgb(214 215 216 / 60%);
+            padding: 30px;" enctype="multipart/form-data" method="post" action="{% url 'register_provider' %}">
+              {% csrf_token %}
+            <div class="form-row">
+              <div class="col-md-4 form-group">
+                <input type="text" name="t1" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" required />
+                <div class="validate"></div>
+              </div>
+              <div class="col-md-4 form-group">
+                <input type="email" class="form-control" name="t2" id="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Your Email" required  data-msg="Please enter a valid email" />
+                <div class="validate"></div>
+              </div>
+              <div class="col-md-4 form-group">
+                <input type="number" class="form-control" name="t3" id="mob"  maxlength="10"   pattern=".{10}" placeholder="Your Phone" data-rule="Phone" required data-msg="Please enter a valid Phone No" />
+                <div class="validate"></div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-6 form-group">
+                <input type="text" name="t4" class="form-control" id="dis" placeholder="Your District" data-rule="minlen:4" data-msg="Please enter District" required/>
+                <div class="validate"></div>
+              </div>
+              <div class="col-md-6 form-group">
+                <input type="text" class="form-control" name="t5" id="loc" placeholder="Your Location"  data-msg="Please enter Location" required/>
+                <div class="validate"></div>
+              </div>
+             
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" name="t6" rows="5" data-rule="required" data-msg="Please write Address" placeholder="Address" required></textarea>
+              <div class="validate"></div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-4 form-group">
+                  <select  name="t11" class="form-control" required>
+                    <option class="disabled" value="">Choose a Category</option>
+                    {% for data1 in data %}
+                        <option class="" value="{{ data1.catgerory_id }}" >{{ data1.catgerory_name }}</option>
+                    {% endfor %}
+                      </select>
+                  <div class="validate"></div>
+                </div>
+                <div class="col-md-4 form-group">
+                  <input type="number" class="form-control" name="t12" id="" placeholder="Please enter Tharif"  data-msg="Please enter Tharif" required/>
+                  <div class="validate"></div>
+                </div>
+                <div class="col-md-4 form-group">
+                  <input type="file" class="form-control" name="tf1" id="" placeholder="Choose Document"  data-msg="Choose Document" required/>
+                  <div class="validate"></div>
+                </div>
+              </div>
+
+
+            <div class="form-row">
+              <div class="col-md-6 form-group">
+                <input type="text" name="t7" class="form-control" id="unme" placeholder="Your Username" data-rule="minlen:4" data-msg="Please enter username" required/>
+                <div class="validate"></div>
+              </div>
+              <div class="col-md-6 form-group">
+                <input type="password" class="form-control" name="t8"  placeholder="Your Password"  data-msg="Please enter Password" required/>
+                <div class="validate"></div>
+              </div>
+              <input type="hidden" class="form-control" name="t10" required id="logid" placeholder="LOG ID">
+            </div>
+            <div class="text-center"><button type="submit">Register</button></div>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- End Contact Section -->
+
+  </main>
+
+  
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+   
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Day</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/day-multipurpose-html-template-for-free/ -->
+        Designed by <a href="https://bootstrapmade.com/">palliativecare.com</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+  <!-- Vendor JS Files -->
+  <script src="{% static 'vendor/jquery/jquery.min.js'%}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+  <script src="{% static 'vendor/jquery.easing/jquery.easing.min.js'%}"></script>
+  <script src="{% static 'vendor/php-email-form/validate.js'%}"></script>
+  <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js'%}"></script>
+  <script src="{% static 'vendor/venobox/venobox.min.js'%}"></script>
+  <script src="{% static 'vendor/owl.carousel/owl.carousel.min.js'%}"></script>
+  <script src="{% static 'vendor/aos/aos.js'%}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'js/main.js'%}"></script>
+
+  <!-- Vendor JS Files --
+  <script src="{% static 'vendor/venobox/venobox.min.vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'vendor/venobox/venobox.min.js' %}"></script>
+  <script src="{% static 'vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'vendor/aos/aos.js' %}"></script>
+-->
+  <!-- Template Main JS File --
+  <script src="{% static 'js/main.js' %}"></script>-->
+
+</body>
+
+</html>

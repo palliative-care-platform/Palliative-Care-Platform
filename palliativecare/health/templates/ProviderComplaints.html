@@ -1,0 +1,109 @@
+{% extends "providerhead.html" %}
+{% load static %}
+{% block content %}
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<section id="contact" class="contact">
+    <div class="container">
+
+      <div class="section-title">
+        <span></span>
+        <h2>Add Complaints</h2>
+       
+      </div>
+
+      
+
+      <div class="row" data-aos="fade-up">
+
+       
+        <div class="col-lg-6">
+    
+            <form class="" style="box-shadow: 0 0 30px rgb(214 215 216 / 60%);
+            padding: 30px;" enctype="multipart/form-data" method="post" action="{% url 'ProviderComplaints' %}">
+              {% csrf_token %}
+            <div class="form-row">
+              <div class="form-group">
+                <input type="text" name="t1" class="form-control" id="name" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 4 chars" required />
+                <div class="validate"></div>
+              </div>
+              
+            </div>
+           
+            <div class="form-group">
+              <textarea class="form-control" name="t2" rows="5" data-rule="required"  placeholder="Message" required></textarea>
+              <div class="validate"></div>
+            </div>
+
+           
+            <div class="text-center"><button class="btn btn-success" type="submit">Submit</button></div>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+<div class="row  p-3">	
+    <!-- tables -->
+    
+     <!-- <div class="agile-tables">-->
+     <div class="col-md-12 bg-info">
+          <h2 class="text-primary"> Provider Complaints</h2>
+
+
+<table class="table table-responsive table-striped"
+ width="100%" style="margin-bottom:10px;">
+    <thead class="bg-primary text-white">
+    <tr>
+        <th style="  color:white;">Sl.No.</th>
+     
+        <th style="  color:white;">Subject</th>
+        <th style="  color:white;">Message</th>
+        <th style="  color:white;">Complaint Date</th>
+        <th style="  color:white;">Reply</th>
+        
+    </tr>
+</thead>
+    {% for datas in data %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        
+        <td>{{datas.Complaint_subject}}</td>
+        <td>{{datas.Complaint_message}}</td>
+        <td>{{datas.Complaint_date}}</td>
+        <td>     
+            {{datas.Complaint_reply}}
+          
+        </td>
+    
+        
+    </tr>
+    {% if datas.Complaint_reply == "not yet Seen"%}
+           <!-- Modal parent details -->
+
+    {% endif %}
+    {% endfor %}
+            </table>
+
+
+        </div>
+        <!---    </div>-->
+           
+               </div>
+               <style>
+                   table th, table td {
+                   padding: 9px 7px;
+                   text-align: left;
+                   }
+   
+                   </style>
+
+{% endblock %}

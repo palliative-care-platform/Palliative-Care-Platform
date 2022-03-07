@@ -1,0 +1,124 @@
+{% extends "userhead.html" %}
+{% load static %}
+{% block content %}
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<div class="row  p-3">	
+    <!-- tables -->
+    
+     <!-- <div class="agile-tables">-->
+     <div class="col-md-12 bg-info">
+          <h2 class="text-primary">View Service History</h2>
+            <table id="table table-responsive table-striped " width="100%" style="margin-bottom:10px;">
+                <thead class="bg-primary " style="background-color: aqua;">
+       <tr >
+                            <th >Sl.No.</th>
+                            <th  >Service Type</th>
+                            <th  >category</th>
+                            <th  >Details</th>
+                            <th  >Request Date</th>
+                            <th  >User Details</th>
+                            <th  >Provider Details</th>
+                            <th  >Status</th>
+                            <th>Rating</th>
+                        
+                            <th  >Action</th>
+                          </tr>
+                          </thead>
+        
+                          <tbody  style="background-color: aqua;">
+           
+            {% for datas in data %}
+           
+                                <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{datas.service_type}}</td>
+                                <td>{{datas.catgerory.catgerory_name}}</td>
+                                <td>{{datas.service_details}}</td>
+                                <td>{{datas.request_date}}</td>
+                               
+                            <td>{{datas.user.User_name}}</td>
+                            <td>{{datas.Provide_logid.username}}</td>
+                              <td>{{datas.request_status}}</td>
+                              <td>{{datas.request_rating}}</td>
+                                <td>
+                                    {% if datas.request_status == "approve" %}
+                                    <a href="#" data-toggle='modal' data-target='#edit-{{datas.request_id}}'class="btn btn-info" >Make Payment</a>
+                                    {% endif %} 
+                                   
+                                    
+                                    <a class="btn-danger btn" href="{% url 'ServicePayments' %}?id={{datas.request_id}}">View Payments</a>
+                
+                                    
+                                </td>
+
+
+                                <div id="edit-{{datas.request_id}}" class="modal fade" role="dialog" >
+                                    <div class="modal-dialog">
+                                    
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                    <form role="form" action="{% url 'AddPayment' %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="t1" readonly value="{{datas.request_id}}"/>
+                                        
+                                        <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Make Payment</h4>
+                                    </div>
+                                   
+                                    <div class="modal-body">
+                                    <div class="form-group">
+                                    <label for="email">Amount:</label>
+                                    <input type="text" class="form-control" name="s1" value="2000" readonly />
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                    <label for="email">Card No</label>
+                                    <input type="text" class="form-control" name="s2" value=""  />
+                                
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                    <label for="email">CVV</label>
+                                    <input type="text" class="form-control" name="s3" value=""  />
+                                
+                                    <input type="submit" class="btn btn-success" style="margin-left:0px ! important" value="Submit"/>
+                                    </div>
+                                    
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                   
+                                    </div>
+                                    </div>
+                                    </form>
+                                    </div>
+                                    </div>
+
+
+
+
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+      </div>
+     <!---    </div>-->
+        
+            </div>
+            <style>
+                table th, table td {
+                padding: 9px 7px;
+                text-align: left;
+                }
+                table th
+                {
+                    color:white;
+                }
+                </style>
+
+
+{% endblock %}
